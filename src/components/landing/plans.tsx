@@ -1,4 +1,7 @@
 import { Check } from "lucide-react";
+import planWeek from "@/assets/plan-week.jpg";
+import planMonth from "@/assets/plan-month.jpg";
+import planYear from "@/assets/plan-year.jpg";
 
 const plans = [
   {
@@ -10,6 +13,7 @@ const plans = [
     note: "7 servings · billed once",
     features: ["Daily fresh delivery", "Cancel anytime", "Single household size"],
     highlighted: false,
+    image: planWeek,
   },
   {
     id: "month",
@@ -20,6 +24,7 @@ const plans = [
     note: "30 servings · save 8%",
     features: ["Daily fresh delivery", "Free recipe card weekly", "Pause anytime"],
     highlighted: true,
+    image: planMonth,
   },
   {
     id: "year",
@@ -30,6 +35,7 @@ const plans = [
     note: "365 servings · save 18%",
     features: ["Daily fresh delivery", "Seasonal limited editions", "Priority support"],
     highlighted: false,
+    image: planYear,
   },
 ] as const;
 
@@ -47,12 +53,22 @@ export function Plans({ onSubscribe }: { onSubscribe: (id: string) => void }) {
           {plans.map((p) => (
             <article
               key={p.id}
-              className={`flex flex-col rounded-sm border p-8 transition-colors ${
+              className={`flex flex-col overflow-hidden rounded-3xl border p-8 transition-colors ${
                 p.highlighted
                   ? "border-primary bg-primary text-primary-foreground"
                   : "border-border bg-card text-card-foreground"
               }`}
             >
+              <div className="-mx-8 -mt-8 mb-6 aspect-[4/3] overflow-hidden">
+                <img
+                  src={p.image}
+                  alt={`${p.name} plan`}
+                  width={768}
+                  height={576}
+                  loading="lazy"
+                  className="h-full w-full object-cover"
+                />
+              </div>
               <p className={`text-xs uppercase tracking-[0.25em] ${p.highlighted ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
                 {p.tagline}
               </p>
@@ -74,7 +90,7 @@ export function Plans({ onSubscribe }: { onSubscribe: (id: string) => void }) {
               </ul>
               <button
                 onClick={() => onSubscribe(p.id)}
-                className={`mt-10 inline-flex h-11 items-center justify-center rounded-sm text-xs font-medium uppercase tracking-wider transition-colors ${
+                className={`mt-10 inline-flex h-11 items-center justify-center rounded-full text-xs font-medium uppercase tracking-wider transition-colors ${
                   p.highlighted
                     ? "bg-primary-foreground text-primary hover:bg-primary-foreground/90"
                     : "bg-foreground text-background hover:bg-foreground/90"
