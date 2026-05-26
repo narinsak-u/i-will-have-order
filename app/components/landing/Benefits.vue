@@ -2,10 +2,10 @@
 import { Leaf, HeartPulse, Sparkles, Shield } from 'lucide-vue-next'
 
 const benefits = [
-  { icon: Leaf, title: "Plant-forward", body: "Each serving delivers 4g of fiber and a full cup of leafy greens." },
-  { icon: HeartPulse, title: "Heart-friendly", body: "Rich in folate, magnesium, and potassium — minerals known to support cardiovascular health." },
-  { icon: Sparkles, title: "High in protein", body: "12g of slow-release dairy protein per ramekin to keep you full longer." },
-  { icon: Shield, title: "Immunity boost", body: "Iron and vitamin K from spinach, paired with vitamin A from aged cheese." },
+  { icon: Leaf, title: 'พืชเป็นหลัก', body: 'แต่ละที่ให้ไฟเบอร์ 4 กรัมและผักใบเขียวเต็มถ้วย' },
+  { icon: HeartPulse, title: 'ดีต่อหัวใจ', body: 'อุดมด้วยโฟเลต แมกนีเซียม และโพแทสเซียม — แร่ธาตุที่ช่วยสนับสนุนสุขภาพหัวใจและหลอดเลือด' },
+  { icon: Sparkles, title: 'โปรตีนสูง', body: 'โปรตีนนมที่ย่อยช้า 12 กรัมต่อราเมกิ้น ช่วยให้คุณอิ่มนานขึ้น' },
+  { icon: Shield, title: 'เสริมภูมิคุ้มกัน', body: 'ธาตุเหล็กและวิตามินเคจากผักโขม ผสานกับวิตามินเอจากชีสแก่' },
 ]
 </script>
 
@@ -15,7 +15,7 @@ const benefits = [
       <div class="max-w-2xl">
         <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">Benefits</p>
         <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
-          Comfort food that does your body a favor.
+          อาหารที่ทั้งอร่อยและดีต่อร่างกาย
         </h2>
       </div>
       <div class="mt-14 grid gap-px overflow-hidden rounded-sm border border-border bg-border md:grid-cols-2">
