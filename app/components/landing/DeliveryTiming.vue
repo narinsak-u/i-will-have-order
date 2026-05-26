@@ -4,23 +4,23 @@ import { Clock, Truck, Package } from 'lucide-vue-next'
 const schedules = [
   {
     plan: "1 Week",
-    ship: "Same-day dispatch",
-    arrive: "Next morning, 7–9 AM",
-    cadence: "7 consecutive daily drops",
+    ship: "จัดส่งในวันเดียวกัน",
+    arrive: "เช้าวันถัดไป 7–9 น.",
+    cadence: "จัดส่งทุกวันติดต่อกัน 7 วัน",
     icon: Package,
   },
   {
     plan: "1 Month",
-    ship: "Daily dispatch at 5 AM",
-    arrive: "Each morning, 7–9 AM",
-    cadence: "30 daily drops · pause anytime",
+    ship: "จัดส่งทุกวันเวลา 5 น.",
+    arrive: "ทุกเช้า 7–9 น.",
+    cadence: "จัดส่ง 30 วัน · หยุดพักได้ทุกเมื่อ",
     icon: Truck,
   },
   {
     plan: "1 Year",
-    ship: "Daily dispatch at 5 AM",
-    arrive: "Each morning, 6:30–8:30 AM (priority)",
-    cadence: "365 daily drops · seasonal menu rotations",
+    ship: "จัดส่งทุกวันเวลา 5 น.",
+    arrive: "ทุกเช้า 6:30–8:30 น. (จัดส่งก่อน)",
+    cadence: "จัดส่ง 365 วัน · เมนูตามฤดูกาล",
     icon: Clock,
   },
 ]
@@ -32,10 +32,10 @@ const schedules = [
       <div class="max-w-2xl">
         <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">Delivery timing</p>
         <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
-          When each plan ships and arrives.
+          แต่ละแผนจัดส่งและมาถึงเมื่อไหร่
         </h2>
         <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
-          Every ramekin leaves the oven before sunrise and reaches your door within four hours — chilled, sealed, and ready to warm.
+          ราเมกิ้นทุกถ้วยออกจากเตาก่อนพระอาทิตย์ขึ้นและถึงหน้าประตูคุณภายในสี่ชั่วโมง — แช่เย็น ปิดผนึก และพร้อมอุ่นทาน
         </p>
       </div>
 
@@ -65,7 +65,7 @@ const schedules = [
       </div>
 
       <p class="mt-10 text-xs text-muted-foreground">
-        Cut-off for next-day arrival: 8 PM local time. Sundays are a rest day — Saturday orders arrive Monday morning.
+        เวลาตัดรอบสำหรับการจัดส่งในวันถัดไป: 20:00 น. ตามเวลาท้องถิ่น วันอาทิตย์เป็นวันหยุด — คำสั่งซื้อวันเสาร์จะจัดส่งในเช้าวันจันทร์
       </p>
     </div>
   </section>
