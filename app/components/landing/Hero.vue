@@ -3,9 +3,9 @@ import { Leaf, Clock, Truck } from "@lucide/vue";
 import heroBake from "~/assets/images/hero-bake.jpg";
 
 const benefits = [
-  { icon: Leaf, text: "100% organic ingredients, nothing processed" },
-  { icon: Clock, text: "Baked the same morning it arrives" },
-  { icon: Truck, text: "Free delivery · pause or cancel anytime" },
+  { icon: Leaf, text: "วัตถุดิบออร์แกนิก 100% ไม่ผ่านการแปรรูป" },
+  { icon: Clock, text: "อบสดใหม่ในเช้าวันที่จัดส่ง" },
+  { icon: Truck, text: "จัดส่งฟรี · หยุดหรือยกเลิกได้ทุกเมื่อ" },
 ];
 </script>
 
@@ -29,18 +29,16 @@ const benefits = [
         <h1
           class="text-4xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.1]"
         >
-          One warm ramekin of
+          ราเมกิ้นผักโขมอบชีสร้อนๆ หนึ่งถ้วย
           <br />
-          <span class="italic">spinach & cheese</span>, at
+          <span class="italic">ผักโขมและชีส</span>
           <br />
-          your door every morning.
+          ส่งถึงหน้าประตูทุกเช้า
         </h1>
         <p
           class="mt-6 max-w-[420px] text-base text-muted-foreground leading-relaxed"
         >
-          We bake each serving before sunrise with organic baby spinach and
-          slow-aged cheese, then deliver it to you within hours. Pick a plan — 1
-          week, 1 month, or 1 year — and we'll handle the rest.
+          เราอบผักโขมสดออร์แกนิกและชีสแก่ทุกเช้าก่อนพระอาทิตย์ขึ้น และจัดส่งถึงคุณภายในไม่กี่ชั่วโมง เลือกแผน — 1 สัปดาห์ 1 เดือน หรือ 1 ปี — แล้วเราจะจัดการที่เหลือให้เอง
         </p>
         <div class="mt-8 space-y-3">
           <div
@@ -62,7 +60,7 @@ const benefits = [
             :to="{ path: '/', hash: '#plans' }"
             class="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-xs font-semibold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            See plans — from $24
+            ดูแพ็กเกจ — เริ่มต้น $24
           </NuxtLink>
           <NuxtLink
             :to="{ path: '/', hash: '#how' }"
@@ -76,7 +74,7 @@ const benefits = [
         <div class="aspect-square overflow-hidden rounded-3xl bg-muted">
           <img
             :src="heroBake"
-            alt="Fresh baked spinach and cheese"
+            alt="ผักโขมอบชีสสดใหม่"
             class="h-full w-full object-cover"
           />
         </div>
