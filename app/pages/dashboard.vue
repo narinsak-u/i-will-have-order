@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { Package, Calendar, Truck, RotateCcw } from 'lucide-vue-next'
+import type { PlanId } from '~/composables/plans'
+import { getPlan } from '~/composables/plans'
 
 useHead({
   htmlAttrs: { lang: 'th' },
@@ -9,13 +11,6 @@ useHead({
     { name: 'description', content: 'Track your subscription, remaining servings, and next delivery.' },
   ]
 })
-
-type PlanId = "week" | "month" | "year"
-const PLAN_META: Record<PlanId, { name: string; days: number; price: number }> = {
-  week: { name: "1 Week", days: 7, price: 24 },
-  month: { name: "1 Month", days: 30, price: 89 },
-  year: { name: "1 Year", days: 365, price: 899 },
-}
 
 const plan = ref<{ planId: PlanId; startedAt: number } | null>(null)
 
@@ -31,7 +26,7 @@ const reset = () => {
   plan.value = null
 }
 
-const activeMeta = computed(() => plan.value ? (PLAN_META[plan.value.planId] ?? PLAN_META.week) : null)
+const activeMeta = computed(() => plan.value ? getPlan(plan.value.planId) : null)
 const elapsedDays = computed(() => plan.value ? Math.floor((Date.now() - plan.value.startedAt) / (1000 * 60 * 60 * 24)) : 0)
 const remaining = computed(() => activeMeta.value ? Math.max(0, activeMeta.value.days - elapsedDays.value) : 0)
 const used = computed(() => activeMeta.value ? activeMeta.value.days - remaining.value : 0)
@@ -96,7 +91,7 @@ const nextDelivery = computed(() => new Date(Date.now() + 1000 * 60 * 60 * 18))
             </div>
             <div>
               <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">มูลค่าแผน</p>
-              <p class="mt-2 text-base font-medium text-foreground">${{ activeMeta.price }}</p>
+              <p class="mt-2 text-base font-medium text-foreground">฿{{ activeMeta.price.toLocaleString() }}</p>
             </div>
           </div>
         </section>

@@ -1,59 +1,15 @@
 <script setup lang="ts">
 import { Check } from "@lucide/vue";
+import type { PlanId } from '~/composables/plans'
+import { plans, planImages } from '~/composables/plans'
 
 const props = defineProps<{
-  selectedId: "week" | "month" | "year" | null;
+  selectedId: PlanId | null;
 }>();
 
 const emit = defineEmits<{
-  (e: "select", id: "week" | "month" | "year"): void;
+  (e: "select", id: PlanId): void;
 }>();
-
-const plans = [
-  {
-    id: "week" as const,
-    label: "TRY IT OUT",
-    name: "1 Week",
-    price: 24,
-    cadence: "/ week",
-    servings: "7 ที่",
-    billing: "คิดเงินครั้งเดียว",
-    features: [
-      "จัดส่งสดใหม่ทุกวัน",
-      "ยกเลิกได้ทุกเมื่อ",
-      "ขนาดสำหรับครัวเรือนเดียว",
-    ],
-  },
-  {
-    id: "month" as const,
-    label: "MOST POPULAR",
-    name: "1 Month",
-    price: 89,
-    cadence: "/ month",
-    servings: "30 ที่",
-    billing: "ประหยัด 8%",
-    popular: true,
-    features: [
-      "จัดส่งสดใหม่ทุกวัน",
-      "การ์ดสูตรอาหารฟรีทุกสัปดาห์",
-      "หยุดพักได้ทุกเมื่อ",
-    ],
-  },
-  {
-    id: "year" as const,
-    label: "BEST VALUE",
-    name: "1 Year",
-    price: 899,
-    cadence: "/ year",
-    servings: "365 ที่",
-    billing: "ประหยัด 18%",
-    features: [
-      "จัดส่งสดใหม่ทุกวัน",
-      "รุ่นจำกัดตามฤดูกาล",
-      "สนับสนุนระดับพรีเมียม",
-    ],
-  },
-] as const;
 </script>
 
 <template>
@@ -82,24 +38,23 @@ const plans = [
           ]"
         >
           <!-- Plan image placeholder -->
-          <div
-            class="aspect-video bg-gradient-to-br from-muted to-muted-foreground/20"
+          <img
+            :src="planImages[plan.id]"
+            :alt="`${plan.name} plan`"
+            class="aspect-video w-full object-cover h-64"
           />
-
-          <!-- Plan label -->
-          <div
-            :class="[
-              'px-6 py-3 text-center text-xs font-semibold uppercase tracking-wider',
-              plan.popular
-                ? 'bg-[#1a3a2a] text-muted-foreground'
-                : 'bg-background text-muted-foreground',
-            ]"
-          >
-            {{ plan.label }}
-          </div>
 
           <!-- Plan content -->
           <div class="px-6 py-8">
+            <!-- Plan label -->
+            <p
+              :class="[
+                'mb-4 text-xs uppercase tracking-widest',
+                plan.popular ? 'text-gray-300' : 'text-muted-foreground',
+              ]"
+            >
+              {{ plan.label }}
+            </p>
             <h3
               :class="[
                 'text-2xl font-light tracking-tight',
@@ -115,15 +70,17 @@ const plans = [
                   'text-5xl font-light',
                   plan.popular ? 'text-white' : 'text-foreground',
                 ]"
-                >${{ plan.price }}</span
               >
+                ฿{{ plan.price.toLocaleString() }}
+              </span>
               <span
                 :class="[
                   'text-sm',
                   plan.popular ? 'text-gray-300' : 'text-muted-foreground',
                 ]"
-                >{{ plan.cadence }}</span
               >
+                {{ plan.cadence }}
+              </span>
             </div>
 
             <p
@@ -147,7 +104,7 @@ const plans = [
                 class="flex items-center gap-3 text-sm"
               >
                 <Check
-                  class="h-4 w-4 flex-shrink-0"
+                  class="h-4 w-4 shrink-0"
                   :class="plan.popular ? 'text-white' : 'text-foreground'"
                 />
                 {{ feature }}

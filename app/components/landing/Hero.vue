@@ -36,9 +36,11 @@ const benefits = [
           ส่งถึงหน้าประตูทุกเช้า
         </h1>
         <p
-          class="mt-6 max-w-[420px] text-base text-muted-foreground leading-relaxed"
+          class="mt-6 max-w-105 text-base text-muted-foreground leading-relaxed"
         >
-          เราอบผักโขมสดออร์แกนิกและชีสแก่ทุกเช้าก่อนพระอาทิตย์ขึ้น และจัดส่งถึงคุณภายในไม่กี่ชั่วโมง เลือกแผน — 1 สัปดาห์ 1 เดือน หรือ 1 ปี — แล้วเราจะจัดการที่เหลือให้เอง
+          เราอบผักโขมสดออร์แกนิกและชีสแก่ทุกเช้าก่อนพระอาทิตย์ขึ้น
+          และจัดส่งถึงคุณภายในไม่กี่ชั่วโมง เลือกแผน — 1 สัปดาห์ 1 เดือน หรือ 1
+          ปี — แล้วเราจะจัดการที่เหลือให้เอง
         </p>
         <div class="mt-8 space-y-3">
           <div
@@ -48,11 +50,11 @@ const benefits = [
           >
             <component
               :is="benefit.icon"
-              class="h-5 w-5 flex-shrink-0 text-muted-foreground"
+              class="h-5 w-5 shrink-0 text-muted-foreground"
             />
-            <span class="text-sm text-muted-foreground">{{
-              benefit.text
-            }}</span>
+            <span class="text-sm text-muted-foreground">
+              {{ benefit.text }}
+            </span>
           </div>
         </div>
         <div class="mt-10 flex flex-wrap items-center gap-4">
@@ -60,7 +62,7 @@ const benefits = [
             :to="{ path: '/', hash: '#plans' }"
             class="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-xs font-semibold uppercase tracking-wide text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            ดูแพ็กเกจ — เริ่มต้น $24
+            ดูแพ็กเกจ — เริ่มต้น ฿39/ครั้ง
           </NuxtLink>
           <NuxtLink
             :to="{ path: '/', hash: '#how' }"
@@ -70,7 +72,7 @@ const benefits = [
           </NuxtLink>
         </div>
       </div>
-      <div class="relative mx-auto w-full max-w-[500px] lg:max-w-none">
+      <div class="relative mx-auto w-full max-w-125 lg:max-w-none">
         <div class="aspect-square overflow-hidden rounded-3xl bg-muted">
           <img
             :src="heroBake"

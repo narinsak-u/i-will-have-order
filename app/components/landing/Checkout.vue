@@ -1,11 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { Check, ShoppingBag } from 'lucide-vue-next'
-import planWeek from '~/assets/images/plan-week.jpg'
-import planMonth from '~/assets/images/plan-month.jpg'
-import planYear from '~/assets/images/plan-year.jpg'
-
-export type PlanId = 'week' | 'month' | 'year'
+import type { PlanId } from '~/composables/plans'
+import { getPlan, planImages } from '~/composables/plans'
 
 const props = defineProps<{
   selectedPlan: PlanId | null
@@ -15,17 +12,11 @@ const emit = defineEmits<{
   (e: 'confirm', id: PlanId, customer: { name: string; email: string; address: string }): void
 }>()
 
-const PLAN_DETAILS: Record<PlanId, { name: string; price: number; cadence: string; note: string; image: string }> = {
-  week: { name: "1 Week", price: 24, cadence: "/ week", note: "7 servings · billed once", image: planWeek },
-  month: { name: "1 Month", price: 89, cadence: "/ month", note: "30 servings · save 8%", image: planMonth },
-  year: { name: "1 Year", price: 899, cadence: "/ year", note: "365 servings · save 18%", image: planYear },
-}
-
 const name = ref("")
 const email = ref("")
 const address = ref("")
 
-const plan = computed(() => props.selectedPlan ? PLAN_DETAILS[props.selectedPlan] : null)
+const plan = computed(() => props.selectedPlan ? getPlan(props.selectedPlan) : null)
 
 const handleSubmit = () => {
   if (!props.selectedPlan) return;
@@ -50,16 +41,16 @@ const handleSubmit = () => {
         <aside class="lg:col-span-2 rounded-3xl border border-border bg-card p-6">
           <template v-if="plan">
             <div class="overflow-hidden rounded-2xl">
-              <img :src="plan.image" :alt="plan.name" class="aspect-[4/3] w-full object-cover" />
+              <img :src="planImages[props.selectedPlan!]" :alt="plan.name" class="aspect-[4/3] w-full object-cover" />
             </div>
             <div class="mt-6 flex items-baseline justify-between">
               <h3 class="text-2xl font-light tracking-tight text-foreground">{{ plan.name }}</h3>
               <div class="text-right">
-                <div class="text-3xl font-light text-foreground">${{ plan.price }}</div>
+                <div class="text-3xl font-light text-foreground">฿{{ plan.price.toLocaleString() }}</div>
                 <div class="text-xs text-muted-foreground">{{ plan.cadence }}</div>
               </div>
             </div>
-            <p class="mt-1 text-xs text-muted-foreground">{{ plan.note }}</p>
+            <p class="mt-1 text-xs text-muted-foreground">{{ plan.servings }} · {{ plan.billing }}</p>
             <ul class="mt-6 space-y-2 border-t border-border pt-6 text-sm text-foreground">
               <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> จัดส่งสดใหม่ทุกวัน</li>
               <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> รวมค่าจัดส่งฟรี</li>
@@ -91,7 +82,7 @@ const handleSubmit = () => {
           <div class="mt-8 flex items-center justify-between border-t border-border pt-6">
             <div>
               <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">รวมวันนี้</p>
-              <p class="mt-1 text-2xl font-light text-foreground">{{ plan ? `$${plan.price}` : "—" }}</p>
+              <p class="mt-1 text-2xl font-light text-foreground">{{ plan ? `฿${plan.price.toLocaleString()}` : "—" }}</p>
             </div>
             <button type="submit" :disabled="!selectedPlan" class="inline-flex h-12 items-center rounded-full bg-primary px-8 text-xs font-medium uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50">
               สั่งซื้อ

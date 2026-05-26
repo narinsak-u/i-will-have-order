@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { toast } from 'vue-sonner'
-import type { PlanId } from '~/app/components/landing/Checkout.vue'
+import type { PlanId } from '~/composables/plans'
 
 useHead({
   htmlAttrs: { lang: 'th' },
