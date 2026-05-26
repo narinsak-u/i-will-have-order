@@ -3,15 +3,15 @@ import ingredientsImg from '~/assets/images/ingredients.jpg'
 import deliveryImg from '~/assets/images/delivery.jpg'
 
 const steps = [
-  { n: "01", title: "Picked at dawn", body: "Organic baby spinach harvested locally each morning before the heat sets in." },
-  { n: "02", title: "Folded with cheese", body: "Slow-aged mozzarella and a whisper of nutmeg, folded by hand." },
-  { n: "03", title: "Baked golden", body: "Stone-baked in small ceramic ramekins at 200°C until the top is amber." },
-  { n: "04", title: "On your doorstep", body: "Chilled, boxed, and delivered within four hours of leaving the oven." },
+  { n: "01", title: "เก็บในยามเช้า", body: "ผักโขมเด็กออร์แกนิกที่เก็บจากท้องถิ่นทุกเช้าก่อนอากาศจะร้อน" },
+  { n: "02", title: "คลุกเคล้ากับชีส", body: "มอสซาเรลลาชีสแก่และลูกจันทน์เทศเล็กน้อย คลุกเคล้าด้วยมือ" },
+  { n: "03", title: "อบจนเป็นสีทอง", body: "อบในราเมกิ้นเซรามิกที่อุณหภูมิ 200°C จนด้านบนเป็นสีเหลืองอำพัน" },
+  { n: "04", title: "ถึงหน้าประตูคุณ", body: "แช่เย็น บรรจุกล่อง และจัดส่งภายในสี่ชั่วโมงหลังจากออกจากเตา" },
 ]
 
 const ingredients = [
-  "Organic spinach", "Fresh mozzarella", "Aged parmesan", "Free-range eggs",
-  "Cultured butter", "Sea salt", "Black pepper", "Nutmeg",
+  "ผักโขมอินทรีย์", "มอสซาเรลลาสด", "พาร์เมซานแก่", "ไข่ไก่เลี้ยงปล่อย",
+  "เนยหมัก", "เกลือทะเล", "พริกไทยดำ", "ลูกจันทน์เทศ",
 ]
 </script>
 
@@ -22,7 +22,7 @@ const ingredients = [
         <div>
           <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">How it's made</p>
           <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
-            Four steps. Nothing more.
+            สี่ขั้นตอน เท่านั้นเอง
           </h2>
           <ol class="mt-10 space-y-8">
             <li v-for="s in steps" :key="s.n" class="grid grid-cols-[auto_1fr] gap-6 border-t border-border pt-6">
