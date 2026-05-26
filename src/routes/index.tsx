@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { Hero } from "@/components/landing/hero";
@@ -9,6 +10,7 @@ import { Benefits } from "@/components/landing/benefits";
 import { DeliveryTiming } from "@/components/landing/delivery-timing";
 import { Testimonials } from "@/components/landing/testimonials";
 import { Faq } from "@/components/landing/faq";
+import { Checkout, type PlanId } from "@/components/landing/checkout";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -26,14 +28,24 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const navigate = useNavigate();
-  const handleSubscribe = (planId: string) => {
+  const [selectedPlan, setSelectedPlan] = useState<PlanId | null>(null);
+
+  const handleSelect = (planId: string) => {
+    setSelectedPlan(planId as PlanId);
+    // scroll to checkout after state updates
+    setTimeout(() => {
+      document.getElementById("checkout")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
+  };
+
+  const handleConfirm = (planId: PlanId) => {
     try {
       localStorage.setItem(
         "sc:active-plan",
         JSON.stringify({ planId, startedAt: Date.now() }),
       );
     } catch {}
-    toast.success("Added to cart", { description: `${planId} plan saved. Heading to dashboard...` });
+    toast.success("Order placed", { description: `${planId} plan confirmed. Heading to dashboard...` });
     setTimeout(() => navigate({ to: "/dashboard" }), 700);
   };
 
@@ -42,12 +54,13 @@ function Index() {
       <SiteHeader />
       <main>
         <Hero />
-        <Plans onSubscribe={handleSubscribe} />
+        <Plans onSelect={handleSelect} selectedId={selectedPlan} />
         <HowItsMade />
         <Benefits />
         <DeliveryTiming />
         <Testimonials />
         <Faq />
+        <Checkout selectedPlan={selectedPlan} onConfirm={handleConfirm} />
       </main>
       <SiteFooter />
       <Toaster />

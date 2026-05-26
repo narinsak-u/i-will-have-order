@@ -39,7 +39,7 @@ const plans = [
   },
 ] as const;
 
-export function Plans({ onSubscribe }: { onSubscribe: (id: string) => void }) {
+export function Plans({ onSelect, selectedId }: { onSelect: (id: string) => void; selectedId: string | null }) {
   return (
     <section id="plans" className="border-b border-border/60 bg-background">
       <div className="mx-auto max-w-6xl px-6 py-24">
@@ -50,13 +50,17 @@ export function Plans({ onSubscribe }: { onSubscribe: (id: string) => void }) {
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {plans.map((p) => (
+          {plans.map((p) => {
+            const isSelected = selectedId === p.id;
+            return (
             <article
               key={p.id}
               className={`flex flex-col overflow-hidden rounded-3xl border p-8 transition-colors ${
                 p.highlighted
                   ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-card text-card-foreground"
+                  : isSelected
+                    ? "border-foreground bg-card text-card-foreground"
+                    : "border-border bg-card text-card-foreground"
               }`}
             >
               <div className="-mx-8 -mt-8 mb-6 aspect-[4/3] overflow-hidden">
@@ -89,17 +93,18 @@ export function Plans({ onSubscribe }: { onSubscribe: (id: string) => void }) {
                 ))}
               </ul>
               <button
-                onClick={() => onSubscribe(p.id)}
+                onClick={() => onSelect(p.id)}
                 className={`mt-10 inline-flex h-11 items-center justify-center rounded-full text-xs font-medium uppercase tracking-wider transition-colors ${
                   p.highlighted
                     ? "bg-primary-foreground text-primary hover:bg-primary-foreground/90"
                     : "bg-foreground text-background hover:bg-foreground/90"
                 }`}
               >
-                Add to cart
+                {isSelected ? "Selected — go to checkout" : "Choose plan"}
               </button>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
