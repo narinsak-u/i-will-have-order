@@ -5,11 +5,11 @@ import { toast } from 'vue-sonner'
 import type { PlanId } from '~/app/components/landing/Checkout.vue'
 
 useHead({
-  title: 'Spinach & Cheese Co. — Baked fresh, delivered daily',
+  title: 'Spinach & Cheese Co. — อบสดใหม่ จัดส่งทุกวัน',
   meta: [
-    { name: 'description', content: 'Subscribe to a daily ramekin of organic baked spinach and melted cheese. 1 week, 1 month, and 1 year plans.' },
+    { name: 'description', content: 'สมัครรับราเมกิ้นผักโขมอบชีสออร์แกนิกทุกวัน แผน 1 สัปดาห์ 1 เดือน และ 1 ปี' },
     { property: 'og:title', content: 'Spinach & Cheese Co.' },
-    { property: 'og:description', content: 'Baked fresh, delivered daily.' },
+    { property: 'og:description', content: 'อบสดใหม่ จัดส่งทุกวัน' },
   ]
 })
 
@@ -27,7 +27,7 @@ const handleConfirm = (planId: PlanId) => {
   try {
     localStorage.setItem("sc:active-plan", JSON.stringify({ planId, startedAt: Date.now() }))
   } catch {}
-  toast.success("Order placed", { description: `${planId} plan confirmed. Heading to dashboard...` })
+  toast.success("สั่งซื้อสำเร็จ", { description: `ยืนยันแผน ${planId} แล้ว กำลังไปยังแดชบอร์ด...` })
   setTimeout(() => router.push('/dashboard'), 700)
 }
 </script>
