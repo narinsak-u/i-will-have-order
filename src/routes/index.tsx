@@ -6,6 +6,7 @@ import { Hero } from "@/components/landing/hero";
 import { Plans } from "@/components/landing/plans";
 import { HowItsMade } from "@/components/landing/how-its-made";
 import { Benefits } from "@/components/landing/benefits";
+import { Faq } from "@/components/landing/faq";
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -42,6 +43,7 @@ function Index() {
         <Plans onSubscribe={handleSubscribe} />
         <HowItsMade />
         <Benefits />
+        <Faq />
       </main>
       <SiteFooter />
       <Toaster />
