@@ -1,41 +1,44 @@
 <template>
-  <footer class="border-t border-border/60 bg-background py-12 md:py-16">
-    <div class="mx-auto max-w-6xl px-6">
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+  <footer class="border-t border-border/60 bg-background">
+    <div class="mx-auto max-w-6xl px-6 py-12">
+      <div
+        class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
+      >
         <div>
-          <span class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold">S</span>
-          <p class="mt-4 text-sm text-muted-foreground">Baked fresh, delivered daily. The simplest routine for your day.</p>
+          <h3 class="text-lg font-semibold text-foreground">
+            Spinach & Cheese Co.
+          </h3>
+          <p class="mt-1 text-sm text-muted-foreground">
+            Baked fresh. Delivered daily.
+          </p>
         </div>
-        <div>
-          <h4 class="text-sm font-semibold text-foreground">Product</h4>
-          <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><NuxtLink :to="{ path: '/', hash: '#plans' }" class="hover:text-foreground">Plans</NuxtLink></li>
-            <li><NuxtLink :to="{ path: '/', hash: '#how' }" class="hover:text-foreground">Sourcing</NuxtLink></li>
-            <li><NuxtLink :to="{ path: '/', hash: '#faq' }" class="hover:text-foreground">FAQ</NuxtLink></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-sm font-semibold text-foreground">Company</h4>
-          <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="#" class="hover:text-foreground">About</a></li>
-            <li><a href="#" class="hover:text-foreground">Careers</a></li>
-            <li><a href="#" class="hover:text-foreground">Contact</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 class="text-sm font-semibold text-foreground">Legal</h4>
-          <ul class="mt-4 space-y-2 text-sm text-muted-foreground">
-            <li><a href="#" class="hover:text-foreground">Terms</a></li>
-            <li><a href="#" class="hover:text-foreground">Privacy</a></li>
-          </ul>
-        </div>
+        <nav
+          class="flex flex-wrap gap-6 text-xs font-semibold uppercase tracking-wide text-muted-foreground md:gap-8"
+        >
+          <NuxtLink
+            :to="{ path: '/', hash: '#plans' }"
+            class="hover:text-foreground transition-colors"
+            >Subscription</NuxtLink
+          >
+          <NuxtLink
+            :to="{ path: '/', hash: '#how' }"
+            class="hover:text-foreground transition-colors"
+            >How it's made</NuxtLink
+          >
+          <NuxtLink
+            :to="{ path: '/', hash: '#benefits' }"
+            class="hover:text-foreground transition-colors"
+            >Benefits</NuxtLink
+          >
+          <a href="#" class="hover:text-foreground transition-colors"
+            >Support</a
+          >
+        </nav>
       </div>
-      <div class="mt-12 flex items-center justify-between border-t border-border/60 pt-8 text-xs text-muted-foreground">
-        <p>&copy; {{ new Date().getFullYear() }} Spinach &amp; Cheese Co.</p>
-        <div class="flex gap-4">
-          <a href="#" class="hover:text-foreground">Twitter</a>
-          <a href="#" class="hover:text-foreground">Instagram</a>
-        </div>
+      <div class="mt-8 border-t border-border/60 pt-8">
+        <p class="text-xs text-muted-foreground">
+          &copy; 2026 Spinach & Cheese Co. All rights reserved.
+        </p>
       </div>
     </div>
   </footer>
