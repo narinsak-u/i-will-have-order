@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '~/app/components/ui/accordion'
-
 const faqs = [
   { q: "How does the subscription work?", a: "Pick a 1-week, 1-month, or 1-year plan. We bake a fresh ramekin each morning and deliver it to your door before lunch. Your plan auto-renews at the end of the cycle — you stay in control from your dashboard." },
   { q: "Can I pause or cancel anytime?", a: "Yes. Pause for a weekend, a holiday, or as long as you need from the dashboard — no fees, no questions. Cancel with one click before your next renewal and you won't be charged again." },
@@ -16,12 +14,12 @@ const faqs = [
     <div class="mx-auto max-w-3xl px-6 py-24">
       <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">FAQ</p>
       <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">Questions, answered.</h2>
-      <Accordion type="single" collapsible class="mt-12">
-        <AccordionItem v-for="(f, i) in faqs" :key="i" :value="`item-${i}`" class="border-border">
-          <AccordionTrigger class="text-left text-base font-medium text-foreground hover:no-underline">{{ f.q }}</AccordionTrigger>
-          <AccordionContent class="text-sm leading-relaxed text-muted-foreground">{{ f.a }}</AccordionContent>
-        </AccordionItem>
-      </Accordion>
+      <UiAccordion type="single" collapsible class="mt-12">
+        <UiAccordionItem v-for="(f, i) in faqs" :key="i" :value="`item-${i}`" class="border-border">
+          <UiAccordionTrigger class="text-left text-base font-medium text-foreground hover:no-underline">{{ f.q }}</UiAccordionTrigger>
+          <UiAccordionContent class="text-sm leading-relaxed text-muted-foreground">{{ f.a }}</UiAccordionContent>
+        </UiAccordionItem>
+      </UiAccordion>
     </div>
   </section>
 </template>

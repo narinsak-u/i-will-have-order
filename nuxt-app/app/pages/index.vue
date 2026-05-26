@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { Toaster } from '~/app/components/ui/sonner'
 import { toast } from 'vue-sonner'
 import type { PlanId } from '~/app/components/landing/Checkout.vue'
 
@@ -47,6 +46,6 @@ const handleConfirm = (planId: PlanId) => {
       <LandingCheckout :selectedPlan="selectedPlan" @confirm="handleConfirm" />
     </main>
     <SiteFooter />
-    <Toaster />
+    <UiSonner />
   </div>
 </template>
