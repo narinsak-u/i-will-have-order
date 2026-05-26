@@ -5,6 +5,7 @@ import { toast } from 'vue-sonner'
 import type { PlanId } from '~/app/components/landing/Checkout.vue'
 
 useHead({
+  htmlAttrs: { lang: 'th' },
   title: 'Spinach & Cheese Co. — อบสดใหม่ จัดส่งทุกวัน',
   meta: [
     { name: 'description', content: 'สมัครรับราเมกิ้นผักโขมอบชีสออร์แกนิกทุกวัน แผน 1 สัปดาห์ 1 เดือน และ 1 ปี' },

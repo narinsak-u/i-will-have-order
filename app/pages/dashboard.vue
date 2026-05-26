@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { Package, Calendar, Truck, RotateCcw } from 'lucide-vue-next'
 
 useHead({
+  htmlAttrs: { lang: 'th' },
   title: 'Dashboard — Spinach & Cheese Co.',
   meta: [
     { name: 'description', content: 'Track your subscription, remaining servings, and next delivery.' },
