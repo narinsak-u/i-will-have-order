@@ -5,15 +5,22 @@
         class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center"
       >
         <div>
-          <h3 class="text-lg font-semibold text-foreground">
-            Spinach & Cheese Co.
-          </h3>
-          <p class="mt-1 text-sm text-muted-foreground">
+          <NuxtLink to="/" class="flex items-center gap-2">
+            <span
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-semibold"
+            >
+              S
+            </span>
+            <span class="text-sm font-semibold tracking-tight text-foreground">
+              Spinach &amp; Cheese Co.
+            </span>
+          </NuxtLink>
+          <p class="ml-10 text-xs text-muted-foreground">
             Baked fresh. Delivered daily.
           </p>
         </div>
         <nav
-          class="flex flex-wrap gap-6 text-xs font-semibold uppercase tracking-wide text-muted-foreground md:gap-8"
+          class="flex flex-wrap gap-6 text-xs uppercase tracking-wide text-muted-foreground md:gap-8"
         >
           <NuxtLink
             :to="{ path: '/', hash: '#plans' }"
@@ -30,8 +37,15 @@
             class="hover:text-foreground transition-colors"
             >Benefits</NuxtLink
           >
-          <a href="#" class="hover:text-foreground transition-colors"
-            >Support</a
+          <NuxtLink
+            :to="{ path: '/', hash: '#delivery' }"
+            class="hover:text-foreground transition-colors"
+            >Delivery</NuxtLink
+          >
+          <NuxtLink
+            :to="{ path: '/', hash: '#faq' }"
+            class="hover:text-foreground transition-colors"
+            >FAQ</NuxtLink
           >
         </nav>
       </div>

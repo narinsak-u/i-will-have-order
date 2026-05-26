@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import ingredientsImg from "~/assets/images/ingredients.jpg";
-import deliveryImg from "~/assets/images/delivery.jpg";
 
 const steps = [
   {
@@ -69,30 +68,25 @@ const ingredients = [
               </div>
             </li>
           </ol>
+
+          <div class="rounded-sm border border-border bg-card p-8 mt-10">
+            <p
+              class="text-xs uppercase tracking-[0.25em] text-muted-foreground"
+            >
+              Organic Ingredients
+            </p>
+            <ul class="mt-5 grid grid-cols-2 gap-y-2 text-sm text-foreground">
+              <li v-for="i in ingredients" :key="i">· {{ i }}</li>
+            </ul>
+          </div>
         </div>
         <div class="space-y-6">
           <img
             :src="ingredientsImg"
             alt="Fresh spinach and cheese"
             loading="lazy"
-            class="aspect-4/5 w-full h-127.5 rounded-sm object-cover"
+            class="aspect-4/5 w-full h-full rounded-sm object-cover"
           />
-          <div class="grid gap-6 md:grid-cols-2">
-            <img
-              :src="deliveryImg"
-              alt="Boxed for delivery"
-              loading="lazy"
-              class="aspect-4/3 w-full rounded-sm object-cover"
-            />
-            <div class="rounded-sm border border-border bg-card p-8">
-              <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
-                Ingredients
-              </p>
-              <ul class="mt-5 grid grid-cols-2 gap-y-2 text-sm text-foreground">
-                <li v-for="i in ingredients" :key="i">· {{ i }}</li>
-              </ul>
-            </div>
-          </div>
         </div>
       </div>
     </div>

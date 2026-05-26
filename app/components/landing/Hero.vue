@@ -20,20 +20,24 @@ const benefits = [
         <div
           class="mb-6 inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background px-4 py-2"
         >
-          <span class="h-2 w-2 rounded-full bg-primary" />
+          <span class="h-2 w-2 animate-pulse rounded-full bg-primary" />
           <span
             class="text-xs font-medium uppercase tracking-wider text-muted-foreground"
-            >Fresh-baked daily subscription</span
           >
+            Fresh-baked daily subscription
+          </span>
         </div>
         <h1
-          class="text-4xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.1]"
+          class="text-4xl font-light tracking-tight text-foreground sm:text-5xl md:text-6xl lg:leading-[1.1]"
         >
-          ราเมกิ้นผักโขมอบชีสร้อนๆ หนึ่งถ้วย
+          สดใหม่ทุกเช้า
           <br />
-          <span class="italic">ผักโขมและชีส</span>
-          <br />
-          ส่งถึงหน้าประตูทุกเช้า
+          <div class="italic font-semibold lg:text-[4.5rem]">
+            <span class="text-primary">ผักโขม</span>
+            <span class="mx-2">อบ</span>
+            <span class="text-yellow-500">ชีส</span>
+          </div>
+          ส่งตรงถึงหน้าประตู
         </h1>
         <p
           class="mt-6 max-w-105 text-base text-muted-foreground leading-relaxed"
@@ -66,7 +70,7 @@ const benefits = [
           </NuxtLink>
           <NuxtLink
             :to="{ path: '/', hash: '#how' }"
-            class="inline-flex h-12 items-center justify-center border-b-2 border-foreground px-4 text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-muted-foreground"
+            class="inline-flex h-12 items-center justify-center border-b-2 border-foreground mx-4 text-xs font-semibold uppercase tracking-wide text-foreground transition-colors hover:text-muted-foreground"
           >
             How it's made
           </NuxtLink>

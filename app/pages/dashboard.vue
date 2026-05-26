@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
-import { Package, Calendar, Truck, RotateCcw } from "lucide-vue-next";
+import {
+  Package,
+  Calendar,
+  Truck,
+  RotateCcw,
+  XCircle,
+  ArrowRight,
+} from "lucide-vue-next";
 import type { PlanId } from "~/composables/plans";
 import { getPlan } from "~/composables/plans";
 
@@ -28,6 +35,12 @@ onMounted(() => {
 const reset = () => {
   localStorage.removeItem("sc:active-plan");
   plan.value = null;
+};
+
+const cancelPlan = () => {
+  if (confirm("คุณแน่ใจหรือไม่ที่จะยกเลิกแผนสมาชิก?")) {
+    reset();
+  }
 };
 
 const activeMeta = computed(() =>
@@ -70,7 +83,7 @@ const pct = computed(() =>
         <button
           v-if="plan"
           @click="reset"
-          class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground"
+          class="inline-flex cursor-pointer items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground"
         >
           <RotateCcw class="h-3.5 w-3.5" /> รีเซ็ตตัวอย่าง
         </button>
@@ -154,9 +167,10 @@ const pct = computed(() =>
               </p>
               <p class="mt-2 text-base font-medium text-foreground">
                 {{
-                  new Date(plan.startedAt).toLocaleDateString(undefined, {
+                  new Date(plan.startedAt).toLocaleDateString("th-TH", {
                     month: "short",
                     day: "numeric",
+                    year: "numeric",
                   })
                 }}
               </p>
@@ -171,9 +185,10 @@ const pct = computed(() =>
                 {{
                   new Date(
                     plan.startedAt + activeMeta.days * 86400000,
-                  ).toLocaleDateString(undefined, {
+                  ).toLocaleDateString("th-TH", {
                     month: "short",
                     day: "numeric",
+                    year: "numeric",
                   })
                 }}
               </p>
@@ -200,12 +215,6 @@ const pct = computed(() =>
             </div>
             <p class="mt-3 text-lg font-medium text-foreground">
               พรุ่งนี้, 8:00 AM
-              <!-- {{
-                nextDelivery.toLocaleTimeString(undefined, {
-                  hour: "numeric",
-                  minute: "2-digit",
-                })
-              }} -->
             </p>
             <p class="mt-1 text-xs text-muted-foreground">
               ออกจากเตา · สดได้ 24 ชม. ในตู้เย็น
@@ -219,18 +228,33 @@ const pct = computed(() =>
             </div>
             <ul class="mt-4 space-y-3 text-sm text-foreground">
               <li class="flex justify-between">
-                <span>จันทร์ – ศุกร์</span
-                ><span class="text-muted-foreground">8:00 AM</span>
+                <span>จันทร์ – ศุกร์</span>
+                <span class="text-muted-foreground">8:00 AM</span>
               </li>
               <li class="flex justify-between">
-                <span>เสาร์</span
-                ><span class="text-muted-foreground">9:30 AM</span>
+                <span>เสาร์</span>
+                <span class="text-muted-foreground">9:30 AM</span>
               </li>
               <li class="flex justify-between">
-                <span>อาทิตย์</span
-                ><span class="text-muted-foreground">วันหยุด</span>
+                <span>อาทิตย์</span>
+                <span class="text-muted-foreground">วันหยุด</span>
               </li>
             </ul>
+          </div>
+
+          <div class="rounded-sm border border-border bg-card p-6 space-y-3">
+            <button
+              @click="cancelPlan"
+              class="flex w-full items-center cursor-pointer justify-center gap-2 rounded-sm border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-red-500 hover:bg-red-500/20"
+            >
+              <XCircle class="h-3.5 w-3.5" /> ยกเลิกแผน
+            </button>
+            <NuxtLink
+              :to="{ path: '/', hash: '#plans' }"
+              class="flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-primary-foreground hover:bg-primary/90"
+            >
+              เปลี่ยนแผน <ArrowRight class="h-3.5 w-3.5" />
+            </NuxtLink>
           </div>
         </aside>
       </div>

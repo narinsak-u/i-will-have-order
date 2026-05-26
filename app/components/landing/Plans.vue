@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Check } from "@lucide/vue";
-import type { PlanId } from '~/composables/plans'
-import { plans, planImages } from '~/composables/plans'
+import type { PlanId } from "~/composables/plans";
+import { plans, planImages } from "~/composables/plans";
 
 const props = defineProps<{
   selectedId: PlanId | null;
@@ -46,7 +46,6 @@ const emit = defineEmits<{
 
           <!-- Plan content -->
           <div class="px-6 py-8">
-            <!-- Plan label -->
             <p
               :class="[
                 'mb-4 text-xs uppercase tracking-widest',
@@ -113,7 +112,7 @@ const emit = defineEmits<{
 
             <button
               :class="[
-                'mt-8 w-full rounded-full py-3 text-sm font-semibold uppercase tracking-wide transition-all',
+                'mt-8 w-full cursor-pointer rounded-full py-3 text-sm font-semibold uppercase tracking-wide transition-all',
                 plan.popular
                   ? 'bg-white text-[#1a3a2a] hover:bg-gray-100'
                   : 'bg-foreground text-background hover:bg-foreground/90',

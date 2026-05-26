@@ -12,7 +12,7 @@ export const plans = [
     price: 273,
     cadence: '/ week',
     servings: '7 ที่',
-    billing: '39 บาทต่อครั้ง',
+    billing: 'เฉลี่ย 39 บาทต่อครั้ง',
     days: 7,
     features: [
       'จัดส่งสดใหม่ทุกวัน',
