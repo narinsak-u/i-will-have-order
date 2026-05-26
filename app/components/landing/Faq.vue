@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const faqs = [
-  { q: "How does the subscription work?", a: "Pick a 1-week, 1-month, or 1-year plan. We bake a fresh ramekin each morning and deliver it to your door before lunch. Your plan auto-renews at the end of the cycle — you stay in control from your dashboard." },
-  { q: "Can I pause or cancel anytime?", a: "Yes. Pause for a weekend, a holiday, or as long as you need from the dashboard — no fees, no questions. Cancel with one click before your next renewal and you won't be charged again." },
-  { q: "Where do the ingredients come from?", a: "Spinach is harvested at dawn from certified-organic farms within 80 km of our kitchen. Mozzarella and parmesan come from a single family dairy, and eggs are free-range from pasture-raised hens. Every batch is traceable to the farm." },
-  { q: "Are there any additives or preservatives?", a: "None. Just spinach, cheese, eggs, butter, sea salt, pepper, and a touch of nutmeg. Because we bake and deliver the same day, nothing needs to be preserved." },
-  { q: "What if I have allergies or dietary needs?", a: "Our ramekins contain dairy, eggs, and gluten-free ingredients. We can't currently offer vegan or dairy-free versions, but we're happy to flag allergens — just reach out after subscribing." },
-  { q: "When and how is it delivered?", a: "Deliveries arrive chilled between 9am and noon, within four hours of leaving the oven. Reheat for 8 minutes at 180°C and it's as good as fresh from our kitchen." },
+  { q: "การสมัครสมาชิกทำงานอย่างไร?", a: "เลือกแผน 1 สัปดาห์ 1 เดือน หรือ 1 ปี เราอบราเมกิ้นสดใหม่ทุกเช้าและจัดส่งถึงหน้าประตูคุณก่อนเที่ยง แผนของคุณจะต่ออายุอัตโนมัติเมื่อสิ้นสุดรอบ — คุณควบคุมได้จากแดชบอร์ดของคุณ" },
+  { q: "ฉันสามารถหยุดพักหรือยกเลิกได้ทุกเมื่อหรือไม่?", a: "ได้ คุณสามารถหยุดพักสำหรับสุดสัปดาห์ วันหยุด หรือนานเท่าที่คุณต้องการจากแดชบอร์ด — ไม่มีค่าธรรมเนียม ไม่มีคำถาม ยกเลิกด้วยคลิกเดียวก่อนการต่ออายุครั้งถัดไปและคุณจะไม่ถูกเรียกเก็บเงินอีก" },
+  { q: "วัตถุดิบมาจากที่ไหน?", a: "ผักโขมถูกเก็บในย่ำเช้าจากฟาร์มออร์แกนิกที่ได้รับการรับรองภายในระยะ 80 กม. จากครัวของเรา มอสซาเรลลาและพาร์เมซานมาจากฟาร์มโคนมครอบครัวเดียว และไข่เป็นแบบเลี้ยงปล่อยจากแม่ไก่ที่เลี้ยงในทุ่งหญ้า ทุกชุดสามารถตรวจสอบย้อนกลับไปถึงฟาร์มได้" },
+  { q: "มีสารปรุงแต่งหรือสารกันเสียหรือไม่?", a: "ไม่มี มีเพียงผักโขม ชีส ไข่ เนย เกลือทะเล พริกไทย และลูกจันทน์เทศเล็กน้อย เพราะเราอบและจัดส่งในวันเดียวกัน จึงไม่จำเป็นต้องใส่สารกันเสีย" },
+  { q: "ถ้าฉันมีอาการแพ้หรือความต้องการด้านอาหารพิเศษล่ะ?", a: "ราเมกิ้นของเรามีนม ไข่ และส่วนผสมที่ปราศจากกลูเตน ขณะนี้เราไม่สามารถเสนอเวอร์ชันมังสวิรัติหรือไร้นมได้ แต่เรายินดีแจ้งสารก่อภูมิแพ้ — เพียงติดต่อเราหลังจากสมัครสมาชิก" },
+  { q: "จัดส่งเมื่อไหร่และอย่างไร?", a: "การจัดส่งมาถึงแบบแช่เย็นระหว่าง 9 น. ถึงเที่ยง ภายในสี่ชั่วโมงหลังจากออกจากเตา อุ่นต่ออีก 8 นาทีที่ 180°C และมันจะสดเหมือนเพิ่งออกจากครัวของเรา" },
 ]
 </script>
 
@@ -13,7 +13,7 @@ const faqs = [
   <section id="faq" class="border-b border-border/60 bg-background">
     <div class="mx-auto max-w-3xl px-6 py-24">
       <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">FAQ</p>
-      <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">Questions, answered.</h2>
+      <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">คำถาม มีคำตอบ</h2>
       <UiAccordion type="single" collapsible class="mt-12">
         <UiAccordionItem v-for="(f, i) in faqs" :key="i" :value="`item-${i}`" class="border-border">
           <UiAccordionTrigger class="text-left text-base font-medium text-foreground hover:no-underline">{{ f.q }}</UiAccordionTrigger>
