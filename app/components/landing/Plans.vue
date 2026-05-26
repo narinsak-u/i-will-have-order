@@ -16,12 +16,12 @@ const plans = [
     name: "1 Week",
     price: 24,
     cadence: "/ week",
-    servings: "7 servings",
-    billing: "billed once",
+    servings: "7 ที่",
+    billing: "คิดเงินครั้งเดียว",
     features: [
-      "Daily fresh delivery",
-      "Cancel anytime",
-      "Single household size",
+      "จัดส่งสดใหม่ทุกวัน",
+      "ยกเลิกได้ทุกเมื่อ",
+      "ขนาดสำหรับครัวเรือนเดียว",
     ],
   },
   {
@@ -30,13 +30,13 @@ const plans = [
     name: "1 Month",
     price: 89,
     cadence: "/ month",
-    servings: "30 servings",
-    billing: "save 8%",
+    servings: "30 ที่",
+    billing: "ประหยัด 8%",
     popular: true,
     features: [
-      "Daily fresh delivery",
-      "Free recipe card weekly",
-      "Pause anytime",
+      "จัดส่งสดใหม่ทุกวัน",
+      "การ์ดสูตรอาหารฟรีทุกสัปดาห์",
+      "หยุดพักได้ทุกเมื่อ",
     ],
   },
   {
@@ -45,12 +45,12 @@ const plans = [
     name: "1 Year",
     price: 899,
     cadence: "/ year",
-    servings: "365 servings",
-    billing: "save 18%",
+    servings: "365 ที่",
+    billing: "ประหยัด 18%",
     features: [
-      "Daily fresh delivery",
-      "Seasonal limited editions",
-      "Priority support",
+      "จัดส่งสดใหม่ทุกวัน",
+      "รุ่นจำกัดตามฤดูกาล",
+      "สนับสนุนระดับพรีเมียม",
     ],
   },
 ] as const;
@@ -66,7 +66,7 @@ const plans = [
         <h2
           class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl"
         >
-          Three ways to keep your kitchen stocked.
+          สามวิธีให้ครัวคุณมีของพร้อมเสมอ
         </h2>
       </div>
       <div class="grid gap-6 md:grid-cols-3">
@@ -162,7 +162,7 @@ const plans = [
                   : 'bg-foreground text-background hover:bg-foreground/90',
               ]"
             >
-              Choose Plan
+              เลือกแพ็กเกจ
             </button>
           </div>
         </div>
