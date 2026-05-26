@@ -39,10 +39,10 @@ const handleSubmit = () => {
       <div class="max-w-2xl">
         <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">Checkout</p>
         <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
-          {{ plan ? `Confirm your ${plan.name.toLowerCase()} plan.` : "Pick a plan to begin checkout." }}
+          {{ plan ? `ยืนยันแผน ${plan.name.toLowerCase()} ของคุณ` : "เลือกแผนเพื่อเริ่มการชำระเงิน" }}
         </h2>
         <p class="mt-3 text-sm text-muted-foreground">
-          {{ plan ? "Review your selection and add your delivery details. You can pause or cancel anytime." : "Choose any plan above and we'll bring you down here to complete the order." }}
+          {{ plan ? "ตรวจสอบการเลือกของคุณและเพิ่มรายละเอียดการจัดส่ง คุณสามารถหยุดพักหรือยกเลิกได้ทุกเมื่อ" : "เลือกแผนใดก็ได้ด้านบนแล้วเราจะพาคุณมาที่นี่เพื่อทำการสั่งซื้อ" }}
         </p>
       </div>
 
@@ -61,44 +61,44 @@ const handleSubmit = () => {
             </div>
             <p class="mt-1 text-xs text-muted-foreground">{{ plan.note }}</p>
             <ul class="mt-6 space-y-2 border-t border-border pt-6 text-sm text-foreground">
-              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> Daily fresh delivery</li>
-              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> Free delivery included</li>
-              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> Pause or cancel anytime</li>
+              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> จัดส่งสดใหม่ทุกวัน</li>
+              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> รวมค่าจัดส่งฟรี</li>
+              <li class="flex items-center gap-2"><Check class="h-4 w-4 text-primary" /> หยุดพักหรือยกเลิกได้ทุกเมื่อ</li>
             </ul>
           </template>
           <div v-else class="flex h-full flex-col items-center justify-center py-16 text-center">
             <ShoppingBag class="h-8 w-8 text-muted-foreground" />
-            <p class="mt-4 text-sm text-muted-foreground">No plan selected yet.</p>
+            <p class="mt-4 text-sm text-muted-foreground">ยังไม่ได้เลือกแผน</p>
           </div>
         </aside>
 
         <form @submit.prevent="handleSubmit" class="lg:col-span-3 rounded-3xl border border-border bg-card p-8">
           <div class="grid gap-5">
             <div>
-              <label for="co-name" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">Full name</label>
+              <label for="co-name" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">ชื่อ-นามสกุล</label>
               <input id="co-name" type="text" v-model="name" required placeholder="Jane Doe" class="mt-2 h-11 w-full rounded-full border border-border bg-background px-5 text-sm text-foreground outline-none transition-colors focus:border-primary" />
             </div>
             <div>
-              <label for="co-email" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</label>
+              <label for="co-email" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">อีเมล</label>
               <input id="co-email" type="email" v-model="email" required placeholder="jane@example.com" class="mt-2 h-11 w-full rounded-full border border-border bg-background px-5 text-sm text-foreground outline-none transition-colors focus:border-primary" />
             </div>
             <div>
-              <label for="co-addr" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">Delivery address</label>
+              <label for="co-addr" class="text-xs uppercase tracking-[0.2em] text-muted-foreground">ที่อยู่จัดส่ง</label>
               <input id="co-addr" type="text" v-model="address" required placeholder="221B Baker Street, London" class="mt-2 h-11 w-full rounded-full border border-border bg-background px-5 text-sm text-foreground outline-none transition-colors focus:border-primary" />
             </div>
           </div>
 
           <div class="mt-8 flex items-center justify-between border-t border-border pt-6">
             <div>
-              <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">Total today</p>
+              <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">รวมวันนี้</p>
               <p class="mt-1 text-2xl font-light text-foreground">{{ plan ? `$${plan.price}` : "—" }}</p>
             </div>
             <button type="submit" :disabled="!selectedPlan" class="inline-flex h-12 items-center rounded-full bg-primary px-8 text-xs font-medium uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50">
-              Place order
+              สั่งซื้อ
             </button>
           </div>
           <p class="mt-4 text-xs text-muted-foreground">
-            Demo checkout — no payment is processed. Your selection is saved to your dashboard.
+            ตัวอย่างการชำระเงิน — ไม่มีการดำเนินการชำระเงินจริง การเลือกของคุณจะถูกบันทึกไปยังแดชบอร์ด
           </p>
         </form>
       </div>
