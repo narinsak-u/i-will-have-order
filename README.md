@@ -1,5 +1,7 @@
 # Spinach & Cheese Co.
 
+![Screenshot](app/assets/images/Screenshot.png)
+
 Thai-language landing page and dashboard for a spinach-and-cheese bake subscription service ("ผักโขมอบชีส"), built with Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS v4.
 
 ## Tech Stack
