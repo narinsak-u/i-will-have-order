@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import { toast } from "vue-sonner";
 import {
   Package,
   Calendar,
@@ -24,8 +26,34 @@ useHead({
 });
 
 const plan = ref<{ planId: PlanId; startedAt: number } | null>(null);
+const route = useRoute();
+const router = useRouter();
 
-onMounted(() => {
+onMounted(async () => {
+  const sessionId = route.query.session_id as string | undefined;
+  if (sessionId) {
+    try {
+      const data = await $fetch<{ planId: PlanId; paymentStatus: string }>(
+        "/api/verify-session",
+        { params: { session_id: sessionId } },
+      );
+      try {
+        localStorage.setItem(
+          "sc:active-plan",
+          JSON.stringify({ planId: data.planId, startedAt: Date.now() }),
+        );
+      } catch {}
+      toast.success("สั่งซื้อสำเร็จ", {
+        description: `ยืนยันแผน ${data.planId} แล้ว`,
+      });
+      await router.replace({ query: {} });
+    } catch {
+      toast.error("ไม่พบข้อมูลการชำระเงิน", {
+        description: "กรุณาลองใหม่อีกครั้ง",
+      });
+    }
+  }
+
   try {
     const raw = localStorage.getItem("sc:active-plan");
     if (raw) plan.value = JSON.parse(raw);
