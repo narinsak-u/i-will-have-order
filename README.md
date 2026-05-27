@@ -1,75 +1,71 @@
-# Nuxt Minimal Starter
+# Spinach & Cheese Co.
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Thai-language landing page and dashboard for a spinach-and-cheese bake subscription service ("ผักโขมอบชีส"), built with Nuxt 4 + Vue 3 + TypeScript + Tailwind CSS v4.
+
+## Tech Stack
+
+- **Framework:** Nuxt 4, Vue 3 (Composition API, `<script setup lang="ts">`)
+- **Styling:** Tailwind CSS v4, `tw-animate-css`
+- **UI:** shadcn-vue (New York style), Reka UI, Lucide icons
+- **Auth:** Better Auth
+- **Animations:** `@vueuse/core` IntersectionObserver + CSS transitions
+
+## Features
+
+- Landing page with plan selection (weekly/monthly/yearly)
+- Scroll-reveal animations via `<RevealSection>` wrapper component
+- Checkout flow with auto-fill Thai mock data
+- Dashboard for subscription management (cancel, change plan)
+- HEIC image support
 
 ## Setup
 
-Make sure to install dependencies:
-
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
 bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Development
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
 bun run dev
 ```
 
-## Production
+Opens at `http://localhost:3000`.
 
-Build the application for production:
+## Commands
 
-```bash
-# npm
-npm run build
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start dev server with HMR |
+| `bun run build` | Production build |
+| `bun run preview` | Preview production build |
+| `bun run generate` | Generate static site |
+| `bun run postinstall` | Generate Nuxt types (needed before type-check) |
+| `bun x vue-tsc --noEmit` | Run type-check |
 
-# pnpm
-pnpm build
+## Project Structure
 
-# yarn
-yarn build
-
-# bun
-bun run build
+```
+app/
+├── assets/css/styles.css     — Global styles, Tailwind, design tokens
+├── components/
+│   ├── landing/              — Landing page sections
+│   ├── SiteHeader.vue        — Sticky header with nav
+│   ├── SiteFooter.vue        — Footer
+│   └── RevealSection.vue     — Scroll-reveal animation wrapper
+├── composables/
+│   └── plans.ts              — Plan definitions, pricing, images
+├── lib/
+│   └── utils.ts              — cn() utility for class merging
+└── pages/
+    ├── index.vue             — Landing page
+    └── dashboard.vue         — Subscription dashboard
 ```
 
-Locally preview production build:
+## Design Decisions
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- All UI text is in Thai (English labels for navigation)
+- Plans data is centralized in `composables/plans.ts` with THB pricing
+- Scroll-reveal animations use IntersectionObserver (via `@vueuse/core`) + pure CSS transitions
+- Sections respect `prefers-reduced-motion: reduce`
+- `scroll-behavior: smooth` + `scroll-padding-top` for smooth navbar hash scrolling
