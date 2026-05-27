@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import { toast } from "vue-sonner";
 import type { PlanId } from "~/composables/plans";
@@ -23,11 +23,11 @@ const selectedPlan = ref<PlanId | null>(null);
 
 const handleSelect = (planId: PlanId) => {
   selectedPlan.value = planId;
-  setTimeout(() => {
+  nextTick(() => {
     document
       .getElementById("checkout")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 50);
+  });
 };
 
 const handleConfirm = (planId: PlanId) => {
