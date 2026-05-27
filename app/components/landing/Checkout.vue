@@ -88,7 +88,7 @@ const handleSubmit = async () => {
           <template v-if="plan">
             <div class="overflow-hidden rounded-2xl">
               <img
-                :src="planImages[props.selectedPlan!]"
+                :src="planImages[plan.id]"
                 :alt="plan.name"
                 class="aspect-4/3 w-full object-cover"
               />
