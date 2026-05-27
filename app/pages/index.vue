@@ -52,16 +52,16 @@ const handleConfirm = (planId: PlanId) => {
       <RevealSection>
         <LandingPlans @select="handleSelect" :selectedId="selectedPlan" />
       </RevealSection>
-      <RevealSection :stagger="150">
+      <RevealSection>
         <LandingHowItsMade />
       </RevealSection>
-      <RevealSection :stagger="120">
+      <RevealSection>
         <LandingBenefits />
       </RevealSection>
-      <RevealSection :stagger="120">
+      <RevealSection>
         <LandingDeliveryTiming />
       </RevealSection>
-      <RevealSection :stagger="100">
+      <RevealSection>
         <LandingTestimonials />
       </RevealSection>
       <RevealSection>
