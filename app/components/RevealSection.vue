@@ -24,7 +24,7 @@ const props = withDefaults(defineProps<{
   duration?: number
   once?: boolean
   as?: keyof HTMLElementTagNameMap
-}>(),
+}>(), {
   threshold: 0.15,
   stagger: 0,
   distance: 32,
