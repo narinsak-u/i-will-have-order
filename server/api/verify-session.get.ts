@@ -13,7 +13,8 @@ export default defineEventHandler(async (event) => {
   let session: Stripe.Response<Stripe.Checkout.Session>
   try {
     session = await stripe.checkout.sessions.retrieve(sessionId)
-  } catch {
+  } catch (error) {
+    console.error('Stripe session retrieval failed:', error)
     throw createError({ statusCode: 500, statusMessage: 'Failed to verify payment session' })
   }
 
