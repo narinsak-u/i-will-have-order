@@ -49,15 +49,31 @@ const handleConfirm = (planId: PlanId) => {
     <SiteHeader />
     <main>
       <LandingHero />
-      <LandingPlans @select="handleSelect" :selectedId="selectedPlan" />
-      <LandingHowItsMade />
-      <LandingBenefits />
-      <LandingDeliveryTiming />
-      <LandingTestimonials />
-      <LandingFaq />
-      <LandingCheckout :selectedPlan="selectedPlan" @confirm="handleConfirm" />
+      <RevealSection>
+        <LandingPlans @select="handleSelect" :selectedId="selectedPlan" />
+      </RevealSection>
+      <RevealSection :stagger="150">
+        <LandingHowItsMade />
+      </RevealSection>
+      <RevealSection :stagger="120">
+        <LandingBenefits />
+      </RevealSection>
+      <RevealSection :stagger="120">
+        <LandingDeliveryTiming />
+      </RevealSection>
+      <RevealSection :stagger="100">
+        <LandingTestimonials />
+      </RevealSection>
+      <RevealSection>
+        <LandingFaq />
+      </RevealSection>
+      <RevealSection>
+        <LandingCheckout :selectedPlan="selectedPlan" @confirm="handleConfirm" />
+      </RevealSection>
     </main>
-    <SiteFooter />
+    <RevealSection>
+      <SiteFooter />
+    </RevealSection>
     <UiSonner />
   </div>
 </template>
