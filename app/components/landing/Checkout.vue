@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from "vue";
-import { Check, ShoppingBag, ArrowUpFromDot } from "lucide-vue-next";
+import { toast } from "vue-sonner";
+import { Check, ShoppingBag, ArrowUpFromDot, LoaderCircle } from "lucide-vue-next";
 import type { PlanId } from "~/composables/plans";
 import { getPlan, planImages } from "~/composables/plans";
 
@@ -8,17 +9,10 @@ const props = defineProps<{
   selectedPlan: PlanId | null;
 }>();
 
-const emit = defineEmits<{
-  (
-    e: "confirm",
-    id: PlanId,
-    customer: { name: string; email: string; address: string },
-  ): void;
-}>();
-
 const name = ref("");
 const email = ref("");
 const address = ref("");
+const loading = ref(false);
 
 const plan = computed(() =>
   props.selectedPlan ? getPlan(props.selectedPlan) : null,
@@ -35,13 +29,30 @@ watch(
   },
 );
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   if (!props.selectedPlan) return;
-  emit("confirm", props.selectedPlan, {
-    name: name.value,
-    email: email.value,
-    address: address.value,
-  });
+
+  loading.value = true;
+  try {
+    const { url } = await $fetch("/api/create-checkout-session", {
+      method: "POST",
+      body: {
+        planId: props.selectedPlan,
+        customer: {
+          name: name.value,
+          email: email.value,
+          address: address.value,
+        },
+      },
+    });
+    window.location.href = url;
+  } catch {
+    toast.error("ไม่สามารถสร้างคำสั่งซื้อได้", {
+      description: "กรุณาลองอีกครั้ง",
+    });
+  } finally {
+    loading.value = false;
+  }
 };
 </script>
 
@@ -77,7 +88,7 @@ const handleSubmit = () => {
           <template v-if="plan">
             <div class="overflow-hidden rounded-2xl">
               <img
-                :src="planImages[props.selectedPlan!]"
+                :src="planImages[plan.id]"
                 :alt="plan.name"
                 class="aspect-4/3 w-full object-cover"
               />
@@ -199,15 +210,15 @@ const handleSubmit = () => {
             </div>
             <button
               type="submit"
-              :disabled="!selectedPlan"
-              class="inline-flex cursor-pointer h-12 items-center rounded-full bg-primary px-8 text-xs font-medium uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
+              :disabled="!selectedPlan || loading"
+              class="inline-flex cursor-pointer h-12 items-center gap-2 rounded-full bg-primary px-8 text-xs font-medium uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              สั่งซื้อ
+              <LoaderCircle v-if="loading" class="h-4 w-4 animate-spin" />
+              {{ loading ? "กำลังดำเนินการ..." : "สั่งซื้อ" }}
             </button>
           </div>
           <p class="mt-4 text-xs text-muted-foreground">
-            ตัวอย่างการชำระเงิน — ไม่มีการดำเนินการชำระเงินจริง
-            การเลือกของคุณจะถูกบันทึกไปยังแดชบอร์ด
+            ชำระเงินอย่างปลอดภัยด้วย Stripe · ทดสอบด้วยบัตร 4242 4242 4242 4242
           </p>
         </form>
       </div>

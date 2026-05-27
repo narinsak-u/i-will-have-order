@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { ref, nextTick } from "vue";
-import { useRouter } from "vue-router";
-import { toast } from "vue-sonner";
 import type { PlanId } from "~/composables/plans";
 
 useHead({
@@ -18,7 +16,6 @@ useHead({
   ],
 });
 
-const router = useRouter();
 const selectedPlan = ref<PlanId | null>(null);
 
 const handleSelect = (planId: PlanId) => {
@@ -28,21 +25,7 @@ const handleSelect = (planId: PlanId) => {
       .getElementById("checkout")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-};
-
-const handleConfirm = (planId: PlanId) => {
-  try {
-    localStorage.setItem(
-      "sc:active-plan",
-      JSON.stringify({ planId, startedAt: Date.now() }),
-    );
-  } catch {}
-  toast.success("สั่งซื้อสำเร็จ", {
-    description: `ยืนยันแผน ${planId} แล้ว กำลังไปยังแดชบอร์ด...`,
-  });
-  setTimeout(() => router.push("/dashboard"), 700);
-};
-</script>
+};</script>
 
 <template>
   <div class="min-h-screen bg-background font-sans antialiased">
@@ -68,7 +51,7 @@ const handleConfirm = (planId: PlanId) => {
         <LandingFaq />
       </RevealSection>
       <RevealSection>
-        <LandingCheckout :selectedPlan="selectedPlan" @confirm="handleConfirm" />
+        <LandingCheckout :selectedPlan="selectedPlan" />
       </RevealSection>
     </main>
     <RevealSection>
