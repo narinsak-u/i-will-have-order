@@ -1,3 +1,10 @@
+/*
+ * POST /api/create-checkout-session
+ * Initiates a Stripe Checkout Session for a subscription plan purchase.
+ * Validates the request body (planId + customer info), creates a Stripe
+ * payment session with line items and metadata, and returns the session
+ * URL for the client to redirect to Stripe's hosted checkout page.
+ */
 import { stripe } from '../utils/stripe'
 
 export default defineEventHandler(async (event) => {
@@ -43,6 +50,8 @@ export default defineEventHandler(async (event) => {
 
   const plan = plans[planId]
 
+  // Stripe expects the amount in the smallest currency unit (e.g., cents for USD)
+  // Since our prices are in THB, we multiply by 100 to convert to satang
   const amount = plan.price * 100
 
   const session = await stripe.checkout.sessions.create({

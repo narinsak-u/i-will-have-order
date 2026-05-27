@@ -33,26 +33,15 @@ const faqs = [
       <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
         FAQ
       </p>
-      <h2
-        class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl"
-      >
+      <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
         ทุกคำถาม มีคำตอบ
       </h2>
       <UiAccordion type="single" collapsible class="mt-12">
-        <UiAccordionItem
-          v-for="(f, i) in faqs"
-          :key="i"
-          :value="`item-${i}`"
-          class="border-border"
-        >
-          <UiAccordionTrigger
-            class="text-left text-base font-medium text-foreground hover:no-underline"
-          >
+        <UiAccordionItem v-for="(f, i) in faqs" :key="i" :value="`item-${i}`" class="border-border">
+          <UiAccordionTrigger class="text-left text-base font-medium text-foreground hover:no-underline">
             {{ f.q }}
           </UiAccordionTrigger>
-          <UiAccordionContent
-            class="text-sm leading-relaxed text-muted-foreground"
-          >
+          <UiAccordionContent class="text-sm leading-relaxed text-muted-foreground">
             {{ f.a }}
           </UiAccordionContent>
         </UiAccordionItem>

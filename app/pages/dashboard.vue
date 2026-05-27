@@ -1,3 +1,14 @@
+<!--
+  /dashboard — Subscription management page (protected by active plan).
+  On mount, verifies any ?session_id query param from Stripe redirect:
+  - Calls GET /api/verify-session to confirm payment
+  - On success, persists the active plan to localStorage (sc:active-plan)
+  - Shows a toast in Thai, then cleans the query string
+  After verification (or if no session_id), reads sc:active-plan from
+  localStorage to display the current subscription: progress bar (days
+  elapsed / remaining), plan metadata, delivery info, and cancel/reset
+  actions. Reset is for demo purposes — clears localStorage.
+-->
 <script setup lang="ts">
 import { ref, onMounted, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
@@ -28,6 +39,7 @@ useHead({
 const plan = ref<{ planId: PlanId; startedAt: number } | null>(null);
 const route = useRoute();
 const router = useRouter();
+const showCancelConfirm = ref(false);
 
 onMounted(async () => {
   const sessionId = route.query.session_id as string | undefined;
@@ -37,12 +49,15 @@ onMounted(async () => {
         "/api/verify-session",
         { params: { session_id: sessionId } },
       );
+
       try {
         localStorage.setItem(
           "sc:active-plan",
           JSON.stringify({ planId: data.planId, startedAt: Date.now() }),
         );
-      } catch { }
+      } catch {
+        console.log('Failed to save active plan to localStorage');
+      }
       toast.success("สั่งซื้อสำเร็จ", {
         description: `ยืนยันแผน ${data.planId} แล้ว`,
       });
@@ -66,11 +81,15 @@ const reset = () => {
 };
 
 const cancelPlan = () => {
-  if (confirm("คุณแน่ใจหรือไม่ที่จะยกเลิกแผนสมาชิก?")) {
-    reset();
-  }
+  showCancelConfirm.value = true;
 };
 
+const confirmCancel = () => {
+  showCancelConfirm.value = false;
+  reset();
+};
+
+// Compute active plan metadata and progress
 const activeMeta = computed(() =>
   plan.value ? getPlan(plan.value.planId) : null,
 );
@@ -242,6 +261,28 @@ const pct = computed(() =>
           </div>
         </aside>
       </div>
+
+      <!-- Cancel Confirmation Modal -->
+      <Teleport to="body">
+        <div v-if="showCancelConfirm" class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+          @click="showCancelConfirm = false">
+          <div class="mx-4 w-full max-w-sm rounded-sm border border-border bg-card p-8 shadow-lg" @click.stop>
+            <h3 class="text-lg font-light text-foreground">ยกเลิกแผนสมาชิก</h3>
+            <p class="mt-2 text-sm text-muted-foreground">คุณแน่ใจหรือไม่ที่จะยกเลิกแผนสมาชิก?
+              การดำเนินการนี้ไม่สามารถย้อนกลับได้</p>
+            <div class="mt-8 flex justify-end gap-3">
+              <button @click="showCancelConfirm = false"
+                class="cursor-pointer rounded-sm border border-border px-4 py-2 text-xs font-medium uppercase tracking-wider text-foreground hover:bg-muted">
+                ยกเลิก
+              </button>
+              <button @click="confirmCancel"
+                class="cursor-pointer rounded-sm bg-red-500 px-4 py-2 text-xs font-medium uppercase tracking-wider text-white hover:bg-red-600">
+                ยืนยันการยกเลิก
+              </button>
+            </div>
+          </div>
+        </div>
+      </Teleport>
     </main>
     <SiteFooter />
   </div>

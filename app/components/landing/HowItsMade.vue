@@ -44,17 +44,11 @@ const ingredients = [
           <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
             How it's made
           </p>
-          <h2
-            class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl"
-          >
+          <h2 class="mt-4 text-3xl font-light tracking-tight text-foreground md:text-4xl">
             สี่ขั้นตอน เท่านั้นเอง
           </h2>
           <ol class="mt-10 space-y-8">
-            <li
-              v-for="s in steps"
-              :key="s.n"
-              class="grid grid-cols-[auto_1fr] gap-6 border-t border-border pt-6"
-            >
+            <li v-for="s in steps" :key="s.n" class="grid grid-cols-[auto_1fr] gap-6 border-t border-border pt-6">
               <span class="text-xs font-mono text-muted-foreground">
                 {{ s.n }}
               </span>
@@ -70,9 +64,7 @@ const ingredients = [
           </ol>
 
           <div class="rounded-sm border border-border bg-card p-8 mt-10">
-            <p
-              class="text-xs uppercase tracking-[0.25em] text-muted-foreground"
-            >
+            <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
               Organic Ingredients
             </p>
             <ul class="mt-5 grid grid-cols-2 gap-y-2 text-sm text-foreground">
@@ -81,12 +73,8 @@ const ingredients = [
           </div>
         </div>
         <div class="space-y-6">
-          <img
-            :src="ingredientsImg"
-            alt="Fresh spinach and cheese"
-            loading="lazy"
-            class="aspect-4/5 w-full h-full rounded-sm object-cover"
-          />
+          <img :src="ingredientsImg" alt="Fresh spinach and cheese" loading="lazy"
+            class="aspect-4/5 w-full h-full rounded-sm object-cover" />
         </div>
       </div>
     </div>

@@ -1,3 +1,10 @@
+/*
+ * GET /api/verify-session
+ * Verifies a Stripe Checkout Session after the user returns from
+ * Stripe's hosted payment page. Retrieves the session by ID, confirms
+ * payment_status is 'paid', and returns the planId + status so the
+ * client can grant access to the dashboard.
+ */
 import Stripe from 'stripe'
 import { stripe } from '../utils/stripe'
 

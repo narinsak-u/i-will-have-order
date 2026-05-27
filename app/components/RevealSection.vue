@@ -1,14 +1,16 @@
+<!--
+  RevealSection — scroll-triggered fade-in/slide-up wrapper.
+  Uses IntersectionObserver to toggle visibility. Supports:
+  - Configurable threshold, distance, duration
+  - Staggered children (up to 12) via --d{1-12} CSS vars
+  - prefers-reduced-motion: disables animation
+  - Polymorphic via `as` prop (defaults to <div>)
+-->
 <template>
-  <component
-    :is="as"
-    ref="target"
-    class="reveal-section"
-    :class="{
-      'is-visible': isVisible,
-      'is-stagger': stagger > 0 && isVisible,
-    }"
-    :style="cssVars"
-  >
+  <component :is="as" ref="target" class="reveal-section" :class="{
+    'is-visible': isVisible,
+    'is-stagger': stagger > 0 && isVisible,
+  }" :style="cssVars">
     <slot />
   </component>
 </template>
@@ -70,24 +72,62 @@ const cssVars = computed(() => ({
   opacity: 0;
   translate: 0 var(--distance, 32px);
   transition: opacity var(--duration, 600ms) ease,
-              translate var(--duration, 600ms) ease;
+    translate var(--duration, 600ms) ease;
 }
+
 .reveal-section.is-visible {
   opacity: 1;
   translate: 0 0;
 }
-.reveal-section.is-stagger > :nth-child(1) { transition-delay: var(--d1, 0ms); }
-.reveal-section.is-stagger > :nth-child(2) { transition-delay: var(--d2, 0ms); }
-.reveal-section.is-stagger > :nth-child(3) { transition-delay: var(--d3, 0ms); }
-.reveal-section.is-stagger > :nth-child(4) { transition-delay: var(--d4, 0ms); }
-.reveal-section.is-stagger > :nth-child(5) { transition-delay: var(--d5, 0ms); }
-.reveal-section.is-stagger > :nth-child(6) { transition-delay: var(--d6, 0ms); }
-.reveal-section.is-stagger > :nth-child(7) { transition-delay: var(--d7, 0ms); }
-.reveal-section.is-stagger > :nth-child(8) { transition-delay: var(--d8, 0ms); }
-.reveal-section.is-stagger > :nth-child(9) { transition-delay: var(--d9, 0ms); }
-.reveal-section.is-stagger > :nth-child(10) { transition-delay: var(--d10, 0ms); }
-.reveal-section.is-stagger > :nth-child(11) { transition-delay: var(--d11, 0ms); }
-.reveal-section.is-stagger > :nth-child(12) { transition-delay: var(--d12, 0ms); }
+
+.reveal-section.is-stagger> :nth-child(1) {
+  transition-delay: var(--d1, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(2) {
+  transition-delay: var(--d2, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(3) {
+  transition-delay: var(--d3, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(4) {
+  transition-delay: var(--d4, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(5) {
+  transition-delay: var(--d5, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(6) {
+  transition-delay: var(--d6, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(7) {
+  transition-delay: var(--d7, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(8) {
+  transition-delay: var(--d8, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(9) {
+  transition-delay: var(--d9, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(10) {
+  transition-delay: var(--d10, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(11) {
+  transition-delay: var(--d11, 0ms);
+}
+
+.reveal-section.is-stagger> :nth-child(12) {
+  transition-delay: var(--d12, 0ms);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .reveal-section {
     opacity: 1;

@@ -40,11 +40,7 @@ const schedules = [
       </div>
 
       <div class="mt-14 grid gap-6 md:grid-cols-3">
-        <article
-          v-for="s in schedules"
-          :key="s.plan"
-          class="rounded-3xl border border-border bg-card p-8"
-        >
+        <article v-for="s in schedules" :key="s.plan" class="rounded-3xl border border-border bg-card p-8">
           <component :is="s.icon" class="h-5 w-5 text-primary" />
           <h3 class="mt-6 text-xl font-light tracking-tight text-foreground">{{ s.plan }}</h3>
           <dl class="mt-6 space-y-4 border-t border-border pt-6 text-sm">
@@ -65,7 +61,8 @@ const schedules = [
       </div>
 
       <p class="mt-10 text-xs text-muted-foreground">
-        เวลาตัดรอบสำหรับการจัดส่งในวันถัดไป: 20:00 น. ตามเวลาท้องถิ่น วันอาทิตย์เป็นวันหยุด — คำสั่งซื้อวันเสาร์จะจัดส่งในเช้าวันจันทร์
+        เวลาตัดรอบสำหรับการจัดส่งในวันถัดไป: 20:00 น. ตามเวลาท้องถิ่น วันอาทิตย์เป็นวันหยุด —
+        คำสั่งซื้อวันเสาร์จะจัดส่งในเช้าวันจันทร์
       </p>
     </div>
   </section>

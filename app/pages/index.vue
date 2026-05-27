@@ -18,6 +18,7 @@ useHead({
 
 const selectedPlan = ref<PlanId | null>(null);
 
+// If the plan was selected, scroll to the checkout section
 const handleSelect = (planId: PlanId) => {
   selectedPlan.value = planId;
   nextTick(() => {
@@ -25,7 +26,9 @@ const handleSelect = (planId: PlanId) => {
       .getElementById("checkout")
       ?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
-};</script>
+};
+
+</script>
 
 <template>
   <div class="min-h-screen bg-background font-sans antialiased">
@@ -33,7 +36,7 @@ const handleSelect = (planId: PlanId) => {
     <main>
       <LandingHero />
       <RevealSection>
-        <LandingPlans @select="handleSelect" :selectedId="selectedPlan" />
+        <LandingPlans @select="handleSelect" />
       </RevealSection>
       <RevealSection>
         <LandingHowItsMade />
