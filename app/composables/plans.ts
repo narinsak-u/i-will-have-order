@@ -29,7 +29,7 @@ export const plans = [
     servings: '30 ที่',
     billing: 'ประหยัด 10%',
     days: 30,
-    popular: true as const,
+    popular: true,
     features: [
       'จัดส่งสดใหม่ทุกวัน',
       'การ์ดสูตรอาหารฟรีทุกสัปดาห์',
@@ -61,6 +61,12 @@ export const planImages: Record<PlanId, string> = {
   year: planYear,
 }
 
+const planMap: Record<PlanId, Plan> = {
+  week: plans[0],
+  month: plans[1],
+  year: plans[2],
+}
+
 export function getPlan(id: PlanId): Plan {
-  return plans.find(p => p.id === id)!
+  return planMap[id]
 }

@@ -1,6 +1,5 @@
 import Stripe from 'stripe'
-
-const stripe = new Stripe(process.env.NUXT_STRIPE_SECRET_KEY!)
+import { stripe } from '../utils/stripe'
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event)

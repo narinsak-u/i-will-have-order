@@ -42,7 +42,7 @@ onMounted(async () => {
           "sc:active-plan",
           JSON.stringify({ planId: data.planId, startedAt: Date.now() }),
         );
-      } catch {}
+      } catch { }
       toast.success("สั่งซื้อสำเร็จ", {
         description: `ยืนยันแผน ${data.planId} แล้ว`,
       });
@@ -57,7 +57,7 @@ onMounted(async () => {
   try {
     const raw = localStorage.getItem("sc:active-plan");
     if (raw) plan.value = JSON.parse(raw);
-  } catch {}
+  } catch { }
 });
 
 const reset = () => {
@@ -90,16 +90,13 @@ const pct = computed(() =>
     ? Math.min(100, Math.max(0, (used.value / activeMeta.value.days) * 100))
     : 0,
 );
-// const nextDelivery = computed(() => new Date(Date.now() + 1000 * 60 * 60 * 18))
 </script>
 
 <template>
   <div class="min-h-screen bg-background font-sans">
     <SiteHeader />
     <main class="mx-auto max-w-6xl px-6 py-16">
-      <div
-        class="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-8"
-      >
+      <div class="flex flex-wrap items-end justify-between gap-4 border-b border-border pb-8">
         <div>
           <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
             Account
@@ -108,20 +105,14 @@ const pct = computed(() =>
             การสมัครสมาชิกของคุณ
           </h1>
         </div>
-        <button
-          v-if="plan"
-          @click="reset"
-          class="inline-flex cursor-pointer items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground"
-        >
+        <button v-if="plan" @click="reset"
+          class="inline-flex cursor-pointer items-center gap-2 text-xs uppercase tracking-wider text-muted-foreground hover:text-foreground">
           <RotateCcw class="h-3.5 w-3.5" /> รีเซ็ตตัวอย่าง
         </button>
       </div>
 
       <!-- Empty State -->
-      <div
-        v-if="!plan"
-        class="mt-16 rounded-sm border border-dashed border-border p-16 text-center"
-      >
+      <div v-if="!plan" class="mt-16 rounded-sm border border-dashed border-border p-16 text-center">
         <Package class="mx-auto h-6 w-6 text-muted-foreground" />
         <h2 class="mt-6 text-xl font-light text-foreground">
           ไม่มีแผนสมาชิกที่ใช้งาน
@@ -129,68 +120,44 @@ const pct = computed(() =>
         <p class="mx-auto mt-2 max-w-sm text-sm text-muted-foreground">
           เลือกแผนเพื่อเริ่มรับผักโขมอบชีสสดใหม่ทุกวัน
         </p>
-        <NuxtLink
-          :to="{ path: '/', hash: '#plans' }"
-          class="mt-8 inline-flex h-11 items-center rounded-sm bg-primary px-6 text-xs font-medium uppercase tracking-wider text-primary-foreground hover:bg-primary/90"
-        >
+        <NuxtLink :to="{ path: '/', hash: '#plans' }"
+          class="mt-8 inline-flex h-11 items-center rounded-sm bg-primary px-6 text-xs font-medium uppercase tracking-wider text-primary-foreground hover:bg-primary/90">
           ดูแพ็กเกจ
         </NuxtLink>
       </div>
 
       <!-- Active Plan -->
       <div v-else-if="activeMeta" class="mt-12 grid gap-6 lg:grid-cols-3">
-        <section
-          class="lg:col-span-2 rounded-sm border border-border bg-card p-8"
-        >
+        <section class="lg:col-span-2 rounded-sm border border-border bg-card p-8">
           <div class="flex items-start justify-between">
             <div>
-              <p
-                class="text-xs uppercase tracking-[0.25em] text-muted-foreground"
-              >
+              <p class="text-xs uppercase tracking-[0.25em] text-muted-foreground">
                 แผนปัจจุบัน
               </p>
-              <h2
-                class="mt-2 text-3xl font-light tracking-tight text-foreground"
-              >
+              <h2 class="mt-2 text-3xl font-light tracking-tight text-foreground">
                 {{ activeMeta.name }}
               </h2>
             </div>
             <span
-              class="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary"
-              >ใช้งานอยู่</span
-            >
+              class="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary">ใช้งานอยู่</span>
           </div>
 
           <div class="mt-10">
             <div class="flex items-baseline justify-between">
-              <span
-                class="text-5xl font-light tracking-tight text-foreground"
-                >{{ remaining }}</span
-              >
-              <span class="text-sm text-muted-foreground"
-                >จาก {{ activeMeta.days }} วัน</span
-              >
+              <span class="text-5xl font-light tracking-tight text-foreground">{{ remaining }}</span>
+              <span class="text-sm text-muted-foreground">จาก {{ activeMeta.days }} วัน</span>
             </div>
-            <div
-              class="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-muted"
-            >
-              <div
-                class="h-full bg-primary transition-all"
-                :style="{ width: `${pct}%` }"
-              />
+            <div class="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-muted">
+              <div class="h-full bg-primary transition-all" :style="{ width: `${pct}%` }" />
             </div>
             <p class="mt-3 text-xs text-muted-foreground">
               ส่งแล้ว {{ used }} ที่ · เหลืออีก {{ remaining }} ที่
             </p>
           </div>
 
-          <div
-            class="mt-10 grid gap-6 sm:grid-cols-3 border-t border-border pt-8"
-          >
+          <div class="mt-10 grid gap-6 sm:grid-cols-3 border-t border-border pt-8">
             <div>
-              <p
-                class="text-xs uppercase tracking-[0.2em] text-muted-foreground"
-              >
+              <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 เริ่ม
               </p>
               <p class="mt-2 text-base font-medium text-foreground">
@@ -204,9 +171,7 @@ const pct = computed(() =>
               </p>
             </div>
             <div>
-              <p
-                class="text-xs uppercase tracking-[0.2em] text-muted-foreground"
-              >
+              <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 ต่ออายุ
               </p>
               <p class="mt-2 text-base font-medium text-foreground">
@@ -222,9 +187,7 @@ const pct = computed(() =>
               </p>
             </div>
             <div>
-              <p
-                class="text-xs uppercase tracking-[0.2em] text-muted-foreground"
-              >
+              <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 มูลค่าแผน
               </p>
               <p class="mt-2 text-base font-medium text-foreground">
@@ -236,9 +199,7 @@ const pct = computed(() =>
 
         <aside class="space-y-6">
           <div class="rounded-sm border border-border bg-card p-6">
-            <div
-              class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground"
-            >
+            <div class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <Truck class="h-3.5 w-3.5" /> จัดส่งครั้งถัดไป
             </div>
             <p class="mt-3 text-lg font-medium text-foreground">
@@ -249,9 +210,7 @@ const pct = computed(() =>
             </p>
           </div>
           <div class="rounded-sm border border-border bg-card p-6">
-            <div
-              class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground"
-            >
+            <div class="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <Calendar class="h-3.5 w-3.5" /> จังหวะรายสัปดาห์
             </div>
             <ul class="mt-4 space-y-3 text-sm text-foreground">
@@ -271,17 +230,14 @@ const pct = computed(() =>
           </div>
 
           <div class="rounded-sm border border-border bg-card p-6 space-y-3">
-            <button
-              @click="cancelPlan"
-              class="flex w-full items-center cursor-pointer justify-center gap-2 rounded-sm border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-red-500 hover:bg-red-500/20"
-            >
+            <button @click="cancelPlan"
+              class="flex w-full items-center cursor-pointer justify-center gap-2 rounded-sm border border-red-500/30 bg-red-500/10 px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-red-500 hover:bg-red-500/20">
               <XCircle class="h-3.5 w-3.5" /> ยกเลิกแผน
             </button>
-            <NuxtLink
-              :to="{ path: '/', hash: '#plans' }"
-              class="flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-primary-foreground hover:bg-primary/90"
-            >
-              เปลี่ยนแผน <ArrowRight class="h-3.5 w-3.5" />
+            <NuxtLink :to="{ path: '/', hash: '#plans' }"
+              class="flex w-full items-center justify-center gap-2 rounded-sm bg-primary px-4 py-2.5 text-xs font-medium uppercase tracking-wider text-primary-foreground hover:bg-primary/90">
+              เปลี่ยนแผน
+              <ArrowRight class="h-3.5 w-3.5" />
             </NuxtLink>
           </div>
         </aside>

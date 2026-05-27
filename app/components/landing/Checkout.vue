@@ -21,7 +21,7 @@ const plan = computed(() =>
 watch(
   () => props.selectedPlan,
   (plan) => {
-    if (plan) {
+    if (plan && !name.value && !email.value && !address.value) {
       name.value = "ผักโขม อบชีส";
       email.value = "spinachandcheese@example.com";
       address.value = "123/4 ถนนสุขุมวิท แขวงคลองเตย เขตคลองเตย กรุงเทพฯ 10110";
