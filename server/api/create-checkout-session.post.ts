@@ -1,6 +1,4 @@
-import Stripe from 'stripe'
-
-const stripe = new Stripe(process.env.NUXT_STRIPE_SECRET_KEY!)
+import { stripe } from '../utils/stripe'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -37,13 +35,13 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const plans: Record<string, { name: string; price: number }> = {
+  const plans = {
     week: { name: '1 Week', price: 273 },
     month: { name: '1 Month', price: 1053 },
     year: { name: '1 Year', price: 9965 },
-  }
+  } as const
 
-  const plan = plans[planId]!
+  const plan = plans[planId]
 
   const amount = plan.price * 100
 
