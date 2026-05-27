@@ -1,3 +1,18 @@
+<template>
+  <component
+    :is="as"
+    ref="target"
+    class="reveal-section"
+    :class="{
+      'is-visible': isVisible,
+      'is-stagger': stagger > 0 && isVisible,
+    }"
+    :style="cssVars"
+  >
+    <slot />
+  </component>
+</template>
+
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
@@ -49,21 +64,6 @@ const cssVars = computed(() => ({
   ...(staggerVars.value || {}),
 }))
 </script>
-
-<template>
-  <component
-    :is="as"
-    ref="target"
-    class="reveal-section"
-    :class="{
-      'is-visible': isVisible,
-      'is-stagger': stagger > 0 && isVisible,
-    }"
-    :style="cssVars"
-  >
-    <slot />
-  </component>
-</template>
 
 <style scoped>
 .reveal-section {
