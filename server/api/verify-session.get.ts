@@ -10,7 +10,12 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: 'Invalid session ID' })
   }
 
-  const session = await stripe.checkout.sessions.retrieve(sessionId)
+  let session: Stripe.Response<Stripe.Checkout.Session>
+  try {
+    session = await stripe.checkout.sessions.retrieve(sessionId)
+  } catch {
+    throw createError({ statusCode: 500, statusMessage: 'Failed to verify payment session' })
+  }
 
   if (session.payment_status !== 'paid') {
     throw createError({ statusCode: 400, statusMessage: 'Payment not completed' })
