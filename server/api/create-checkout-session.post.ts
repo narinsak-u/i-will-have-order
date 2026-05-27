@@ -9,16 +9,41 @@ export default defineEventHandler(async (event) => {
     customer: { name: string; email: string; address: string }
   }
 
+  const validPlans = ['week', 'month', 'year'] as const
+  if (!planId || !validPlans.includes(planId)) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'planId must be one of: week, month, year',
+    })
+  }
+
+  if (
+    !customer ||
+    typeof customer !== 'object' ||
+    !customer.name ||
+    typeof customer.name !== 'string' ||
+    !customer.name.trim() ||
+    !customer.email ||
+    typeof customer.email !== 'string' ||
+    !customer.email.trim() ||
+    !customer.address ||
+    typeof customer.address !== 'string' ||
+    !customer.address.trim()
+  ) {
+    throw createError({
+      statusCode: 400,
+      statusMessage:
+        'customer must be an object with non-empty string fields: name, email, address',
+    })
+  }
+
   const plans: Record<string, { name: string; price: number }> = {
     week: { name: '1 Week', price: 273 },
     month: { name: '1 Month', price: 1053 },
     year: { name: '1 Year', price: 9965 },
   }
 
-  const plan = plans[planId]
-  if (!plan) {
-    throw createError({ statusCode: 400, statusMessage: 'Invalid plan' })
-  }
+  const plan = plans[planId]!
 
   const amount = plan.price * 100
 
